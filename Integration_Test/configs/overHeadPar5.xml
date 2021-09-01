@@ -1,0 +1,21 @@
+<configuration>
+  <module class="at.uibk.dps.ee.control.modules.EnactmentVerticleModule">
+    <property name="pauseOnStart">false</property>
+  </module>
+  <module class="at.uibk.dps.ee.io.modules.InputReaderFileModule">
+    <property name="filePath">./inputData/parallelOverhead5.json</property>
+  </module>
+  <module class="at.uibk.dps.ee.io.modules.OutputPrinterModule"/>
+  <module class="at.uibk.dps.ee.io.modules.SpecificationInputModule">
+    <property name="filePathAfcl">./workflows/parallelOverhead.yaml</property>
+    <property name="filePathMappingFile">./typeMappings/tmOverheadFunction.json</property>
+  </module>
+  <module class="at.uibk.dps.ee.control.modules.EnactmentVerticleModule">
+    <property name="closeOnTerminate">false</property>
+    <property name="updatePeriodMs">100</property>
+  </module>
+  <module class="at.uibk.dps.sc.core.modules.SchedulerModule">
+    <property name="schedulingMode">Random</property>
+    <property name="mappingsToPick">1</property>
+  </module>
+</configuration>

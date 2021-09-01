@@ -1,0 +1,11 @@
+[
+  {"functionType" : "overhead",
+    "resources": [      
+      {"type": "Serverless",
+        "properties": {
+          "Uri": "https://1kbsca9um0.execute-api.eu-central-1.amazonaws.com/default/overHeadMeasure"
+        }
+      }
+      ]
+  }
+]
