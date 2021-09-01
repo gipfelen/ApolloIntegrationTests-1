@@ -1,0 +1,39 @@
+name: Integration Tests
+on: 
+  push:
+  repository_dispatch:
+  schedule:
+    - cron: "0 0 * * *"
+jobs:
+  Integration_Tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout submodules
+        uses: actions/checkout@v2
+      - name: Update submodules to latest commit
+        run: git submodule init && git submodule update --remote --merge
+      - name: Set up JDK 14
+        uses: actions/setup-java@v1
+        with:
+          java-version: 14
+      - name: Grant execute permission for gradlew
+        run: chmod +x Integration_Test/gradlew
+      - name: Build with Gradle
+        run: cd Integration_Test && ./gradlew build -P local
+      - name: Test AtomicEIdx
+        run: cd Integration_Test && ./gradlew :run -P local=true -P mainClass=AtomicEIdx
+      - name: Test ParSeqDataflow
+        run: cd Integration_Test && ./gradlew :run -P local=true -P mainClass=ParSeqDataflow
+      - name: Test SingleAtomic
+        run: cd Integration_Test && ./gradlew :run -P local=true -P mainClass=SingleAtomic
+      - name: Test SimpleIf
+        run: cd Integration_Test && ./gradlew :run -P local=true -P mainClass=SimpleIf
+      - name: Test SingleAtomic
+        run: cd Integration_Test && ./gradlew :run -P local=true -P mainClass=SingleAtomic
+      - name: Test SixAtomics
+        run: cd Integration_Test && ./gradlew :run -P local=true -P mainClass=SixAtomics
+      - name: Test ParForSimple
+        run: cd Integration_Test && ./gradlew :run -P local=true -P mainClass=ParForSimple
+      - name: Test ParForComplex
+        run: cd Integration_Test && ./gradlew :run -P local=true -P mainClass=ParForComplex  

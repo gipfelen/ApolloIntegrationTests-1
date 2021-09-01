@@ -1,0 +1,40 @@
+[submodule "EE-Core"]
+	path = EE-Core
+	url = https://github.com/Apollo-Core/EE-Core
+	branch = master
+[submodule "EE-Control"]
+	path = EE-Control
+	url = https://github.com/Apollo-Core/EE-Control
+	branch = master
+[submodule "EE-Enactables"]
+	path = EE-Enactables
+	url = https://github.com/Apollo-Core/EE-Enactables
+	branch = master
+[submodule "EE-Visualization"]
+	path = EE-Visualization
+	url = https://github.com/Apollo-Core/EE-Visualization
+	branch = master
+[submodule "EE-Deploy"]
+	path = EE-Deploy
+	url = https://github.com/Apollo-Core/EE-Deploy
+	branch = master
+[submodule "EE-Guice"]
+	path = EE-Guice
+	url = https://github.com/Apollo-Core/EE-Guice
+	branch = main
+[submodule "EE-Model"]
+	path = EE-Model
+	url = https://github.com/Apollo-Core/EE-Model
+	branch = main
+[submodule "EE-IO"]
+	path = EE-IO
+	url = https://github.com/Apollo-Core/EE-IO
+	branch = main
+[submodule "SC-Core"]
+	path = SC-Core
+	url = https://github.com/Apollo-Core/SC-Core
+	branch = main
+[submodule "EE-Docker"]
+	path = EE-Docker
+	url = https://github.com/Apollo-Core/EE-Docker
+	branch = vertx

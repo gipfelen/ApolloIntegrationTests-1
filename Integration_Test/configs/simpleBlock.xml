@@ -1,0 +1,15 @@
+<configuration>
+  <module class="at.uibk.dps.ee.control.modules.EnactmentVerticleModule"/>
+  <module class="at.uibk.dps.ee.io.modules.InputReaderFileModule">
+    <property name="filePath">./inputData/simpleBlock.json</property>
+  </module>
+  <module class="at.uibk.dps.ee.io.modules.OutputPrinterModule"/>
+  <module class="at.uibk.dps.ee.io.modules.SpecificationInputModule">
+    <property name="filePathAfcl">./demoWfs/simpleBlock.yaml</property>
+    <property name="filePathMappingFile">./typeMappings/simpleBlock.json</property>
+  </module>
+  <module class="at.uibk.dps.ee.visualization.modules.EnactmentViewerModule">
+    <property name="closeOnTerminate">false</property>
+  </module>
+  <module class="at.uibk.dps.sc.core.modules.SchedulerModule"/>
+</configuration>

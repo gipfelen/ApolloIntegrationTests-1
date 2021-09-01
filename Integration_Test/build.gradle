@@ -1,0 +1,89 @@
+buildscript {
+  repositories {
+    jcenter()
+  }
+  // for the creation of fat jars
+  dependencies {
+      classpath 'com.github.jengelman.gradle.plugins:shadow:5.2.0'
+  }
+}
+
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'eclipse'
+apply plugin: 'maven'
+apply plugin: 'jacoco'
+apply plugin: 'com.github.johnrengelman.shadow'
+// for compliance with higher Java versions
+jacoco {
+  toolVersion = "0.8.5"
+}
+
+def mainClass = project.hasProperty("mainClass") ? project.mainClass : 'OverheadExperimentParallel'
+
+mainClassName = 'at.uibk.dps.integrationTests.testCase.'+mainClass
+
+repositories {
+  mavenCentral()
+  maven {
+    name "jitpack"
+    url 'https://jitpack.io' }
+}
+
+dependencies {
+  // dependency to Opt4J
+  implementation 'com.github.FedorSmirnov89:opt4j:-SNAPSHOT'
+  // dependency to opendse
+  implementation 'com.github.FedorSmirnov89:opendse:-SNAPSHOT'
+
+
+  if (project.hasProperty("local")) {
+    implementation project (':EE-Core')
+    implementation project (':EE-Guice')
+    implementation project (':EE-Model')
+    implementation project (':EE-IO')
+    implementation project (':EE-Enactables')
+    implementation project (':SC-Core')
+    implementation project (':EE-Control')
+    implementation project (':EE-Visualization')
+    implementation project (':EE-Deploy')
+    implementation project (':EE-Docker')
+  }else {
+    // dependencies to Apollo
+    implementation 'com.github.Apollo-Core:EE-Core:master-SNAPSHOT'
+    implementation 'com.github.Apollo-Core:EE-Guice:main-SNAPSHOT'
+    implementation 'com.github.Apollo-Core:EE-Model:main-SNAPSHOT'
+    implementation 'com.github.Apollo-Core:EE-IO:main-SNAPSHOT'
+    implementation 'com.github.Apollo-Core:EE-Enactables:master-SNAPSHOT'
+    implementation 'com.github.Apollo-Core:EE-Control:master-SNAPSHOT'
+    implementation 'com.github.Apollo-Core:SC-Core:main-SNAPSHOT'
+    implementation 'com.github.Apollo-Core:EE-Visualization:-SNAPSHOT'
+    implementation 'com.github.Apollo-Core:EE-Deploy:master-SNAPSHOT'
+  }
+  // SLF4J and Logback for logging
+  implementation group: "ch.qos.logback", name: "logback-classic", version: "1.2.3"
+  // gson to define the format of the exchanged messages
+  implementation 'com.google.code.gson:gson:2.8.6'
+  
+  // the server dependencies
+  implementation 'io.vertx:vertx-web:4.0.3'
+  implementation 'io.vertx:vertx-web-client:4.0.3'
+
+  // https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-lambda
+  implementation group: 'com.amazonaws', name: 'aws-java-sdk-lambda', version: '1.11.207'
+  
+  
+  implementation 'com.squareup.okhttp3:okhttp:4.9.0'
+  
+  // test dependencies
+  testCompile group: 'junit', 		name: 'junit', 					version: '4.+'
+  testCompile group: 'org.mockito',     name: 'mockito-core',     version: '3.4.4'
+  // dependency to local files
+  // compile files('libs/lib.jar')
+}
+
+shadowJar {
+  baseName = 'ApolloExperiments'
+  classifier = null
+  version = null
+}
